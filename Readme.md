@@ -33,17 +33,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: kersvers/s3-sync-with-cloudfront-invalidation@v1.0.0
+    - uses: lakshminkmeda/sync-s3-invalidate-cloudfront@v1.0.0
       with:
-        args: --acl public-read --follow-symlinks --delete
+        args: --delete
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        DISTRIBUTION_ID: 'EQDXXXXO18XXX'
-        AWS_REGION: 'eu-west-1'   # optional: defaults to us-east-1
-        SOURCE_DIR: 'public'      # optional: defaults to entire repository
-        DEST_DIR: 'subdirectory'      # optional: defaults to the root of the bucket
+        DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
+        AWS_REGION: 'eu-north-1'   # optional: defaults to us-east-1
 ```
 
 
